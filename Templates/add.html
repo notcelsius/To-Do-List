@@ -1,37 +1,20 @@
 {% extends 'base.html' %}
+
 {% block title %}Add Task{% endblock %}
+
 {% block content %}
-<div class="form-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Add Task</h1>
+<div class="form-container">
+    <h1>Add Task</h1>
     <form action="{{ url_for('add') }}" method="POST">
-        <div style="margin-bottom: 15px;">
-            <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px;">Task Name</label>
-            <input 
-                id="name" 
-                name="name" 
-                type="text" 
-                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
-                placeholder="Enter task name" 
-                required 
-            />
+        <div class="form-group">
+            <label for="name">Task Name</label>
+            <input id="name" name="name" type="text" placeholder="Enter task name" required />
         </div>
-        <div style="margin-bottom: 15px;">
-            <label for="do_by" style="display: block; font-weight: bold; margin-bottom: 5px;">Do By</label>
-            <input 
-                id="do_by" 
-                name="do_by" 
-                type="datetime-local" 
-                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
-                required 
-            />
+        <div class="form-group">
+            <label for="do_by">Do By</label>
+            <input id="do_by" name="do_by" type="datetime-local" required />
         </div>
-        <div style="text-align: center;">
-            <button 
-                type="submit" 
-                style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
-                Submit
-            </button>
-        </div>
+        <button type="submit">Submit</button>
     </form>
 </div>
 {% endblock %}

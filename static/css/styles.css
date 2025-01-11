@@ -1,0 +1,109 @@
+/* General Body Styling */
+body {
+  background-color: #f8f9fa; /* Light background */
+  color: #212529; /* Dark text for contrast */
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links */
+a {
+  color: #007bff; /* Blue link color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styling */
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #ffffff; /* White background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #007bff; /* Blue for titles */
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #495057; /* Darker text for labels */
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da; /* Light gray border */
+  border-radius: 4px;
+  background-color: #f8f9fa; /* Light gray background for input fields */
+  margin-bottom: 15px;
+}
+
+input[type="text"]:focus,
+input[type="datetime-local"]:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none;
+  background-color: #ffffff; /* White background on focus */
+}
+
+button {
+  background-color: #007bff; /* Blue button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+
+/* Add New Task Button */
+a.add-task-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+a.add-task-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Miscellaneous */
+.space-above {
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.jumbotron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  background-color: #f8f9fa;
+  color: #007bff;
+}
