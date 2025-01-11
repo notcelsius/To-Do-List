@@ -1,23 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>To-Do List</title>
-  </head>
-  <body>
-    <h1>To-Do List</h1>
-    {% if tasks == []: %}
-    <p>Nothing to do 😊</p>
-    {% endif %}
-    <ul>
-      {% for task in tasks %}
-      <li>
-        <a href="{{ url_for('delete', task_name=task.name) }}">Delete Task</a>
-        {{task.name}} - {{task.done_by}}
-        <a href="{{ url_for('edit', task_name=task.name) }}">Edit Task</a>
-      </li>
-      {% endfor %}
-    </ul>
-    <a href="{{ url_for('add') }}">Add New Task</a>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}To Do List{% endblock %}
+
+{% block content %}
+    <div style="text-align: center; margin: 0 auto; width: 80%; padding: 20px;">
+        <h1>To-Do List</h1>
+        {% if tasks == [] %}
+            <p>Nothing to do 😊</p>
+        {% else %}
+            <table border="1" style="width: 100%; margin: 0 auto; text-align: center; border-collapse: collapse; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <thead style="background-color: #007BFF; color: white;">
+                    <tr>
+                        <th style="padding: 10px;">Task Name</th>
+                        <th style="padding: 10px;">Do By</th>
+                        <th style="padding: 10px;">Actions</th>
+                        <th style="padding: 10px;">Complete</th> <!-- New column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr style="text-decoration: {% if task.complete %}line-through{% endif %};">
+                        <td style="padding: 10px;">{{ task.name }}</td>
+                        <td style="padding: 10px;">
+                            {% if task.do_by %}
+                                {{ task.do_by.strftime('%Y-%m-%d %H:%M') }}
+                            {% else %}
+                                Not specified
+                            {% endif %}
+                        </td>
+                        <td style="padding: 10px;">
+                            <a href="{{ url_for('edit', task_name=task.name) }}" style="color: #007BFF; text-decoration: none; margin-right: 10px;">Edit</a> | 
+                            <a href="{{ url_for('delete', task_name=task.name) }}" style="color: #FF5733; text-decoration: none; margin-left: 10px;">Delete</a>
+                        </td>
+                        <td style="padding: 10px;">
+                            <!-- Checkbox to mark as complete -->
+                            <form action="{{ url_for('mark_complete', task_name=task.name) }}" method="POST" style="display: inline-block;">
+                                <input type="checkbox" name="complete" {% if task.complete %}checked{% endif %} onchange="this.form.submit()">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <br>
+        <a href="{{ url_for('add') }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Add New Task</a>
+    </div>
+{% endblock %}

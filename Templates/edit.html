@@ -1,19 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <title>Edit Task</title>
-</head>
-<body>
-    <h1>Edit Task</h1>
+{% extends 'base.html' %}
+
+{% block title %}Edit Task{% endblock %}
+
+{% block content %}
+<div class="form-container" style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Edit Task</h1>
     <form action="{{ url_for('edit', task_name=task.name) }}" method="POST">
-        <label>Task Name</label>
-        <input name="name" type="text" value="{{ task.name }}" required />
-
-        <label>Done by</label>
-        <input name="done_by" type="datetime-local" value="{{ task.done_by.strftime('%Y-%m-%dT%H:%M') }}" required />
-
-        <button type="submit">Update Task</button>
+        <div style="margin-bottom: 15px;">
+            <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px;">Task Name</label>
+            <input 
+                id="name" 
+                name="name" 
+                type="text" 
+                value="{{ task.name }}" 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                required 
+            />
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="do_by" style="display: block; font-weight: bold; margin-bottom: 5px;">Do By</label>
+            <input 
+                id="do_by" 
+                name="do_by" 
+                type="datetime-local" 
+                value="{{ task.do_by.strftime('%Y-%m-%dT%H:%M') }}" 
+                style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                required 
+            />
+        </div>
+        <div style="text-align: center;">
+            <button 
+                type="submit" 
+                style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+                Update Task
+            </button>
+        </div>
     </form>
-</body>
-</html>
+</div>
+{% endblock %}
