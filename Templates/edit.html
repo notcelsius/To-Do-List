@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Task</title>
+</head>
+<body>
+    <h1>Edit Task</h1>
+    <form action="{{ url_for('edit', task_name=task.name) }}" method="POST">
+        <label>Task Name</label>
+        <input name="name" type="text" value="{{ task.name }}" required />
+
+        <label>Done by</label>
+        <input name="done_by" type="datetime-local" value="{{ task.done_by.strftime('%Y-%m-%dT%H:%M') }}" required />
+
+        <button type="submit">Update Task</button>
+    </form>
+</body>
+</html>

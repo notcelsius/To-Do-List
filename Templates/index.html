@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    {% if tasks == []: %}
+    <p>Nothing to do 😊</p>
+    {% endif %}
+    <ul>
+      {% for task in tasks %}
+      <li>
+        <a href="{{ url_for('delete', task_name=task.name) }}">Delete Task</a>
+        {{task.name}} - {{task.done_by}}
+        <a href="{{ url_for('edit', task_name=task.name) }}">Edit Task</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('add') }}">Add New Task</a>
+  </body>
+</html>
