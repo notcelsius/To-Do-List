@@ -91,19 +91,3 @@ a.add-task-btn {
 a.add-task-btn:hover {
   background-color: #0056b3;
 }
-
-/* Miscellaneous */
-.space-above {
-  margin-top: 20px;
-  padding-top: 20px;
-}
-
-.jumbotron {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  height: 100vh;
-  background-color: #f8f9fa;
-  color: #007bff;
-}
