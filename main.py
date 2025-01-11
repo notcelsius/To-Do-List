@@ -76,6 +76,18 @@ def delete():
     db.session.commit()
     return redirect(url_for('home'))
 
+@app.route('/delete_all', methods=['POST'])
+def delete_all():
+    try:
+        db.session.query(Task).delete()
+        db.session.commit()
+        return redirect(url_for('home'))
+    except Exception as e:
+        db.session.rollback()
+        return str(e), 500
+
+
+
 @app.route('/mark_complete/<task_name>', methods=['POST'])
 def mark_complete(task_name):
     task = Task.query.filter_by(name=task_name).first()
@@ -206,6 +218,17 @@ def delete_task(task_name):
 
     # Return a success message
     return jsonify(response={"success": "Successfully deleted the task"}), 200
+
+@app.route('/clear', methods=['POST'])
+def api_delete_all():
+    try:
+        db.session.query(Task).delete()
+        db.session.commit()
+        return {"message": "All tasks successfully deleted.", "status": "success"}, 200
+    except Exception as e:
+        db.session.rollback()
+        return {"message": f"An error occurred: {str(e)}", "status": "error"}, 500
+
 
 
 

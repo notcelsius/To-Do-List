@@ -14,13 +14,12 @@
                     <th style="padding: 10px;">Task Name</th>
                     <th style="padding: 10px;">Do By</th>
                     <th style="padding: 10px;">Actions</th>
-                    <th style="padding: 10px;">Complete</th> <!-- New column -->
+                    <th style="padding: 10px;">Complete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for task in tasks %}
                 <tr>
-                    <!-- Task Name and Do By: Apply strikethrough if complete -->
                     <td style="padding: 10px; text-decoration: {% if task.complete %}line-through{% endif %};">
                         {{ task.name }}
                     </td>
@@ -31,13 +30,11 @@
                             Not specified
                         {% endif %}
                     </td>
-                    <!-- Actions: No strikethrough for Edit/Delete links -->
                     <td style="padding: 10px;">
                         <a href="{{ url_for('edit', task_name=task.name) }}" style="color: #007BFF; text-decoration: none; margin-right: 10px;">Edit</a> | 
                         <a href="{{ url_for('delete', task_name=task.name) }}" style="color: #FF5733; text-decoration: none; margin-left: 10px;">Delete</a>
                     </td>
                     <td style="padding: 10px;">
-                        <!-- Checkbox to mark as complete -->
                         <form action="{{ url_for('mark_complete', task_name=task.name) }}" method="POST" style="display: inline-block;">
                             <input type="checkbox" name="complete" {% if task.complete %}checked{% endif %} onchange="this.form.submit()">
                         </form>
@@ -47,7 +44,14 @@
             </tbody>
         </table>
     {% endif %}
-    <br>
-    <a href="{{ url_for('add') }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Add New Task</a>
+    <!-- Buttons Container -->
+    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+        <a href="{{ url_for('add') }}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Add New Task</a>
+        {% if tasks != [] %}
+        <form action="{{ url_for('delete_all') }}" method="POST" onsubmit="return confirm('Are you sure you want to delete all tasks? This action cannot be undone.');" style="margin: 0;">
+            <button type="submit" style="padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 5px; border: none;">Delete All Tasks</button>
+        </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
